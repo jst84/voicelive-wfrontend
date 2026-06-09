@@ -35,7 +35,7 @@
   },
   "entities": {
     "User": {
-      "description": "Table containing registered users of the finance application.",
+      "description": "Table containing registered users of the finance application. Fields: id, email, full_name, created_at.",
       "source": {
         "object": "dbo.users",
         "type": "table"
@@ -49,17 +49,20 @@
         {
           "name": "email",
           "description": "Email address of the user",
-          "primary-key": false
+          "primary-key": false,
+          "type": "string"
         },
         {
           "name": "full_name",
           "description": "Full name of the user",
-          "primary-key": false
+          "primary-key": false,
+          "type": "string"
         },
         {
           "name": "created_at",
           "description": "Timestamp of when the user record was created",
-          "primary-key": false
+          "primary-key": false,
+          "type": "datetime"
         }
       ],
       "graphql": {
@@ -84,7 +87,7 @@
       ]
     },
     "Account": {
-      "description": "Table containing bank accounts associated to users of the finance application.",
+      "description": "Table containing bank accounts associated to users of the finance application. Fields: id, user_id, name, currency, balance, created_at.",
       "source": {
         "object": "dbo.accounts",
         "type": "table"
@@ -103,22 +106,26 @@
         {
           "name": "name",
           "description": "Name of the account (e.g. Main Checking",
-          "primary-key": false
+          "primary-key": false,
+          "type": "string"
         },
         {
           "name": "currency",
           "description": "Currency of the account (e.g. EUR",
-          "primary-key": false
+          "primary-key": false,
+          "type": "string"
         },
         {
           "name": "balance",
           "description": "Current balance of the account",
-          "primary-key": false
+          "primary-key": false,
+          "type": "decimal"
         },
         {
           "name": "created_at",
           "description": "Timestamp of when the account was created",
-          "primary-key": false
+          "primary-key": false,
+          "type": "datetime"
         }
       ],
       "graphql": {
@@ -143,7 +150,7 @@
       ]
     },
     "Transaction": {
-      "description": "Table containing income and expense transactions linked to users and accounts.",
+      "description": "Table containing income and expense transactions linked to users and accounts. Fields: id, user_id, account_id, amount, type, category, description, transaction_date, created_at.",
       "source": {
         "object": "dbo.transactions",
         "type": "table"
@@ -167,32 +174,38 @@
         {
           "name": "amount",
           "description": "Monetary amount of the transaction",
-          "primary-key": false
+          "primary-key": false,
+          "type": "decimal"
         },
         {
           "name": "type",
           "description": "Type of transaction: INCOME or EXPENSE",
-          "primary-key": false
+          "primary-key": false,
+          "type": "string"
         },
         {
           "name": "category",
           "description": "Category of the transaction (e.g. Groceries",
-          "primary-key": false
+          "primary-key": false,
+          "type": "string"
         },
         {
           "name": "description",
           "description": "Optional free-text description of the transaction",
-          "primary-key": false
+          "primary-key": false,
+          "type": "string"
         },
         {
           "name": "transaction_date",
           "description": "Date and time when the transaction occurred",
-          "primary-key": false
+          "primary-key": false,
+          "type": "datetime"
         },
         {
           "name": "created_at",
           "description": "Timestamp of when the transaction record was created",
-          "primary-key": false
+          "primary-key": false,
+          "type": "datetime"
         }
       ],
       "graphql": {
