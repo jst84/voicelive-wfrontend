@@ -1,0 +1,220 @@
+{
+  "$schema": "https://github.com/Azure/data-api-builder/releases/download/v1.7.90/dab.draft.schema.json",
+  "data-source": {
+    "database-type": "mssql",
+    "connection-string": "Server=tcp:ava-sd-dev.database.windows.net,1433;Database=finance;Authentication=Active Directory Default;",
+    "options": {
+      "set-session-context": false
+    }
+  },
+  "runtime": {
+    "rest": {
+      "enabled": true,
+      "path": "/api",
+      "request-body-strict": true
+    },
+    "graphql": {
+      "enabled": true,
+      "path": "/graphql",
+      "allow-introspection": true
+    },
+    "mcp": {
+      "enabled": true,
+      "path": "/mcp"
+    },
+    "host": {
+      "cors": {
+        "origins": [],
+        "allow-credentials": false
+      },
+      "authentication": {
+        "provider": "AppService"
+      },
+      "mode": "development"
+    }
+  },
+  "entities": {
+    "User": {
+      "description": "Table containing registered users of the finance application.",
+      "source": {
+        "object": "dbo.users",
+        "type": "table"
+      },
+      "fields": [
+        {
+          "name": "id",
+          "description": "Unique identifier of the user (primary key)",
+          "primary-key": true
+        },
+        {
+          "name": "email",
+          "description": "Email address of the user",
+          "primary-key": false
+        },
+        {
+          "name": "full_name",
+          "description": "Full name of the user",
+          "primary-key": false
+        },
+        {
+          "name": "created_at",
+          "description": "Timestamp of when the user record was created",
+          "primary-key": false
+        }
+      ],
+      "graphql": {
+        "enabled": true,
+        "type": {
+          "singular": "User",
+          "plural": "Users"
+        }
+      },
+      "rest": {
+        "enabled": true
+      },
+      "permissions": [
+        {
+          "role": "anonymous",
+          "actions": [
+            {
+              "action": "read"
+            }
+          ]
+        }
+      ]
+    },
+    "Account": {
+      "description": "Table containing bank accounts associated to users of the finance application.",
+      "source": {
+        "object": "dbo.accounts",
+        "type": "table"
+      },
+      "fields": [
+        {
+          "name": "id",
+          "description": "Unique identifier of the account (primary key)",
+          "primary-key": true
+        },
+        {
+          "name": "user_id",
+          "description": "Foreign key referencing the owner user",
+          "primary-key": false
+        },
+        {
+          "name": "name",
+          "description": "Name of the account (e.g. Main Checking",
+          "primary-key": false
+        },
+        {
+          "name": "currency",
+          "description": "Currency of the account (e.g. EUR",
+          "primary-key": false
+        },
+        {
+          "name": "balance",
+          "description": "Current balance of the account",
+          "primary-key": false
+        },
+        {
+          "name": "created_at",
+          "description": "Timestamp of when the account was created",
+          "primary-key": false
+        }
+      ],
+      "graphql": {
+        "enabled": true,
+        "type": {
+          "singular": "Account",
+          "plural": "Accounts"
+        }
+      },
+      "rest": {
+        "enabled": true
+      },
+      "permissions": [
+        {
+          "role": "anonymous",
+          "actions": [
+            {
+              "action": "read"
+            }
+          ]
+        }
+      ]
+    },
+    "Transaction": {
+      "description": "Table containing income and expense transactions linked to users and accounts.",
+      "source": {
+        "object": "dbo.transactions",
+        "type": "table"
+      },
+      "fields": [
+        {
+          "name": "id",
+          "description": "Unique identifier of the transaction (primary key)",
+          "primary-key": true
+        },
+        {
+          "name": "user_id",
+          "description": "Foreign key referencing the user who owns the transaction",
+          "primary-key": false
+        },
+        {
+          "name": "account_id",
+          "description": "Foreign key referencing the account the transaction belongs to",
+          "primary-key": false
+        },
+        {
+          "name": "amount",
+          "description": "Monetary amount of the transaction",
+          "primary-key": false
+        },
+        {
+          "name": "type",
+          "description": "Type of transaction: INCOME or EXPENSE",
+          "primary-key": false
+        },
+        {
+          "name": "category",
+          "description": "Category of the transaction (e.g. Groceries",
+          "primary-key": false
+        },
+        {
+          "name": "description",
+          "description": "Optional free-text description of the transaction",
+          "primary-key": false
+        },
+        {
+          "name": "transaction_date",
+          "description": "Date and time when the transaction occurred",
+          "primary-key": false
+        },
+        {
+          "name": "created_at",
+          "description": "Timestamp of when the transaction record was created",
+          "primary-key": false
+        }
+      ],
+      "graphql": {
+        "enabled": true,
+        "type": {
+          "singular": "Transaction",
+          "plural": "Transactions"
+        }
+      },
+      "rest": {
+        "enabled": true
+      },
+      "permissions": [
+        {
+          "role": "anonymous",
+          "actions": [
+            {
+              "action": "read"
+            }
+          ]
+        }
+      ]
+    }
+  }
+}

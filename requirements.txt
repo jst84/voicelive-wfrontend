@@ -1,0 +1,17 @@
+
+# azure-ai-voicelive[aiohttp]
+azure-ai-voicelive==1.2.0b4
+# pyaudio
+aiohttp
+python-dotenv
+azure-identity
+fastapi
+uvicorn[standard]
+databricks-sdk 
+azure-ai-projects==2.0.0b2
+azure-ai-agents
+openai
+gunicorn
+fastmcp
+databricks-sql-connector
+pyarrow

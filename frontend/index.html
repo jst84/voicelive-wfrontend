@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Talk with data</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap"
+        rel="stylesheet">
+
+    <link href="
+https://cdn.jsdelivr.net/npm/lightweight-simple-grid@0.0.1/simplegrid.min.css
+" rel="stylesheet">
+    <link rel="stylesheet" href="static/css/newsite.css?v123" />
+</head>
+
+<body>
+    <div class="container">
+
+
+        <div class="header">
+            <!-- <div class="left">
+            </div> -->
+            <div class="right">
+                <h1>Voice Assistant</h1>
+            </div>
+
+        </div>
+
+        <div class="content">
+            <!-- Status Section -->
+            <div class="status-section">
+                <div class="status-item">
+                    <div id="connectionStatus" class="status-icon disconnected"></div>
+                    <div class="status-label">
+                        <strong>Connection:</strong> <span id="connectionText">Disconnected</span>
+                    </div>
+                </div>
+                <div class="status-item">
+                    <div id="recordingStatus" class="status-icon disconnected"></div>
+                    <div class="status-label">
+                        <strong>Recording:</strong> <span id="recordingText">Stopped</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Control Section -->
+            <div class="control-section">
+                <button id="startBtn" class="btn-start">
+                    <!-- <span class="mic-icon">🎤</span> -->
+                    <img src="https://cdn-icons-png.flaticon.com/512/3874/3874990.png" width="30" style="
+    color: #fff;
+    filter: invert(1);
+">
+                    Start talking
+                </button>
+                <button id="stopBtn" class="btn-stop hide" disabled>
+                    <span class="mic-icon">⏹</span>
+                    Stop talking
+                </button>
+                <button id="muteBtn" class="btn-mute hide">
+                    Mute
+                </button>
+            </div>
+
+            <!-- Audio Visualizer -->
+            <div class="visualizer-section">
+                <div class="visualizer-label">Audio Level</div>
+                <canvas id="audioVisualizer"></canvas>
+            </div>
+
+            <!-- Conversation Log -->
+            <div class="conversation-section">
+                <div class="conversation-label">Conversation</div>
+                <div class="conversation-log" id="conversationLog"></div>
+            </div>
+        </div>
+    </div>
+
+    <script src="static/js/engine.js?v=1243"></script>
+</body>
+
+</html>

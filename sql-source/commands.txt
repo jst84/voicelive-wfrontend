@@ -1,0 +1,29 @@
+https://learn.microsoft.com/en-us/azure/data-api-builder/mcp/overview#get-started               
+
+dab init --database-type mssql --connection-string "Server=tcp:ava-sd-dev.database.windows.net,1433;Initial Catalog=demo_cnh;Persist Security Info=False;User ID=dev_admin;Password=w0837bKM@w24;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;" --config dab-config.json --host-mode development
+
+dab add User --source dbo.users --source.type table --permissions "anonymous:read" --description "Table containing registered users of the finance application."
+
+dab update User --fields.name id --fields.description "Unique identifier of the user (primary key)" --fields.primary-key true
+dab update User --fields.name email --fields.description "Email address of the user, must be unique" --fields.primary-key false
+dab update User --fields.name full_name --fields.description "Full name of the user" --fields.primary-key false
+dab update User --fields.name created_at --fields.description "Timestamp of when the user record was created" --fields.primary-key false
+
+dab add Account --source dbo.accounts --source.type table  --permissions "anonymous:read" --description "Table containing bank accounts associated to users of the finance application."
+dab update Account --fields.name id --fields.description "Unique identifier of the account (primary key)" --fields.primary-key true
+dab update Account --fields.name user_id --fields.description "Foreign key referencing the owner user" --fields.primary-key false
+dab update Account --fields.name name --fields.description "Name of the account (e.g. Main Checking, Savings)" --fields.primary-key false
+dab update Account --fields.name currency --fields.description "Currency of the account (e.g. EUR, USD)" --fields.primary-key false
+dab update Account --fields.name balance --fields.description "Current balance of the account" --fields.primary-key false
+dab update Account --fields.name created_at --fields.description "Timestamp of when the account was created" --fields.primary-key false
+
+dab add Transaction --source dbo.transactions --source.type table --permissions "anonymous:read" --description "Table containing income and expense transactions linked to users and accounts."
+dab update Transaction --fields.name id --fields.description "Unique identifier of the transaction (primary key)" --fields.primary-key true
+dab update Transaction --fields.name user_id --fields.description "Foreign key referencing the user who owns the transaction" --fields.primary-key false
+dab update Transaction --fields.name account_id --fields.description "Foreign key referencing the account the transaction belongs to" --fields.primary-key false
+dab update Transaction --fields.name amount --fields.description "Monetary amount of the transaction" --fields.primary-key false
+dab update Transaction --fields.name type --fields.description "Type of transaction: INCOME or EXPENSE" --fields.primary-key false
+dab update Transaction --fields.name category --fields.description "Category of the transaction (e.g. Groceries, Salary)" --fields.primary-key false
+dab update Transaction --fields.name description --fields.description "Optional free-text description of the transaction" --fields.primary-key false
+dab update Transaction --fields.name transaction_date --fields.description "Date and time when the transaction occurred" --fields.primary-key false
+dab update Transaction --fields.name created_at --fields.description "Timestamp of when the transaction record was created" --fields.primary-key false
