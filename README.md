@@ -17,6 +17,7 @@ The application consists of three main components:
 ┌──────────────▼──────────────────────┐
 │    VoiceLive Server (Backend)       │
 │    Voice Interaction Engine         │
+│    Foundry Hosted Agent Service     │
 └──────────────┬──────────────────────┘
                │
                │ (REST/MCP/GraphQL)
@@ -35,11 +36,14 @@ The application consists of three main components:
 
 Backend engine responsible for managing voice interaction between the browser and VoiceLive APIs.
 
+This backend uses a Foundry Agent Hosted Service. You need to create an agent on the Foundry platform and then invoke it via the VoiceLive APIs.
+
 ### Key Features
 
 - **Voice Processing**: Manages audio stream from the browser
 - **Conversation**: Orchestrates bidirectional voice communication
 - **VoiceLive API Integration**: Communicates with external APIs for voice processing
+- **Foundry Agent Hosted Service**: Uses a hosted agent configured on the Foundry platform
 - **Session Management**: Maintains conversation state
 
 ### Structure
